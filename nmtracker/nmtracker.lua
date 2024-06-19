@@ -82,10 +82,10 @@ end
 -- Help Command.
 local function display_commands()
     log('Available commands:')
-    log('//nmtracker start <name> <duration_in_seconds> [message] - Start a new timer.')
-    log('//nmtracker delete <name> - Delete an existing timer.')
-    log('//nmtracker check - Manually check timers.')
-    log('//nmtracker commands - Display this list of commands.')
+    log('//nmt start <name> <duration_in_seconds> [message] - Start a new timer.')
+    log('//nmt delete <name> - Delete an existing timer.')
+    log('//nmt check - Manually check timers.')
+    log('//nmt commands - Display this list of commands.')
 end
 
 -- Command handling.
