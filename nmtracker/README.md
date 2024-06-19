@@ -6,7 +6,7 @@ Commands:
 
 //nmtracker or //nmt
 
-//nmt start [name] [timer(in seconds)] [Optional party message] - Set a timer.  If no message is defined, will use default message.  Can be used to add <calls> to alert yourself.
+//nmt start [name] [timer(in seconds)] [Optional party message] - Set a timer.  If no message is defined, will use default message.  Can be used to add <-calls#-> to alert yourself.
 
 //nmt restart - Repeats the last set timer.
 
