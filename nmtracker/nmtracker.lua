@@ -10,12 +10,15 @@ texts = require('texts')
 
 -- Array to store timers.
 local timers = {}
+-- Array to store the last expired timer. (for //rmt repeat)
+local last_expired_timer = nil
 
 -- Welcome message on-load.
 local function log_command_syntax()
     log('Welcome to NMTracker! You can use //nmt or //nmtracker for command entry.')
     log('//nmt start <name> <duration_in_seconds> [message] - Start a new timer.')
     log('//nmt delete <name> - Delete an existing timer.')
+    log('//nmt repeat - Repeat the last expired timer.')
 end
 
 -- On Screen Display.
@@ -69,37 +72,52 @@ local function delete_timer(name)
     end
 end
 
+-- Repeat the last expired timer.
+local function repeat_last_expired_timer()
+    if last_expired_timer then
+        local name = last_expired_timer.name
+        local duration = last_expired_timer.duration
+        local message = last_expired_timer.message
+        start_timer(name, duration, message)
+    else
+        log('This command is only to repeat the most recently expired timer.  Use //nmt start to set a timer before using this!')
+    end
+end
+
 -- Help Command.
 local function display_commands()
     log('Available commands:')
     log('//nmt start <name> <duration_in_seconds> [message] - Start a new timer.')
     log('//nmt delete <name> - Delete an existing timer.')
+    log('//nmt repeat - Repeat the last expired timer.')
     log('//nmt commands - Display this list of commands.')
 end
 
 -- Command handling.
 windower.register_event('addon command', function(command, ...)
     local args = {...}
-    if command == 'start' then
+    if command:lower() == 'start' then
         local name = args[1]
         local duration = tonumber(args[2])
         local message = table.concat({select(3, ...)}, ' ')
         if name and duration then
             start_timer(name, duration, message)
         else
-            log('Usage: //nmtracker start <name> <duration_in_seconds> [message]')
+            log('Usage: //nm start <name> <duration_in_seconds> [message]')
         end
-    elseif command == 'delete' then
+    elseif command:lower() == 'delete' then
         local name = args[1]
         if name then
             delete_timer(name)
         else
-            log('Usage: //nmtracker delete <name>')
+            log('Usage: //nm delete <name>')
         end
-    elseif command == 'commands' then
+    elseif command:lower() == 'repeat' then
+        repeat_last_expired_timer()
+    elseif command:lower() == 'commands' then
         display_commands()
     else
-        log('Unknown command. Use //nmtracker commands to see available commands.')
+        log('Unknown command. Use //nm commands to see available commands.')
     end
 end)
 
