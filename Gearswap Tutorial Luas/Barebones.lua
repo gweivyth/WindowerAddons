@@ -1,6 +1,6 @@
  function get_sets()
  
--- Fashionable stuff.
+-- Fashionable stuff.  This doesn't do anything with the current lua but you can keep track of your lockstyle stuff here for now.
    sets.fashion = {
 --[[     main            ="Masamune",
     sub             ="Nepenthe Grip",
@@ -70,7 +70,7 @@
     back            ={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
    }
     
--- Meditate tick set.
+-- Meditate tick set.  This will equip gear that augments your Meditate ability when you use Meditate.
    sets.meditate = {
        head        = "Wakido Kabuto +2",
        hands       = "Sakonji Kote +1"
