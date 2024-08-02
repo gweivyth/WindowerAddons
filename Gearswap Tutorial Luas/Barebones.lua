@@ -80,31 +80,31 @@ end
 
 -- Equip functions.
 
--- Idle set.
+-- Idle set.  This equips your idle set when you're not in combat.  You usually want gear that makes you take less damage in this set.  It calls the "Idle" set.
 function equip_idle()
     windower.add_to_chat(8,'[Idle]')
    equip(sets.idle)
 end
 
--- Engaged set.
+-- Engaged set.  This set is the gear that you will use when you're auto attacking.  You want to put your TP gear here.
 function equip_engaged()
    windower.add_to_chat(8,'[Engaged]')
    equip(sets.idle,sets.engaged)
 end
 
--- WS set.
+-- WS set.  The gear you'll equip when performing a weapon skill.  In a future tutorial I will also add functions to add different sets based on which weapon skill you're using.
 function equip_ws()
    windower.add_to_chat(8,'[Weapon Skill]')
    equip(sets.idle,sets.engaged,sets.ws)
 end
 
--- Meditate set.
+-- Meditate set.  Calls your meditate augmenting gear when the ability Meditate is used.
 function equip_meditate()
    windower.add_to_chat(8,'[Meditate]')
    equip(sets.meditate)
 end
 
--- Use choose_set to figure out whether we are engaged or not.
+-- Use choose_set to figure out whether we are engaged or not.  This allows Gearswap to tell us that we're engaged, so it switches to our "Engaged" set.
 function choose_set()
    if player.status == "Engaged" then
        equip_engaged()
@@ -113,7 +113,7 @@ function choose_set()
    end
 end
 
--- Checks for abilities.
+-- Checks for abilities.  This is the function that picks up when we use abilities and tells gearswap to use the appropriate set.
 function precast(spell)
     if spell.type == 'WeaponSkill' then
        equip_ws()
@@ -122,7 +122,7 @@ function precast(spell)
    end
 end
 
--- It's samurai, we barely cast...Maybe I will mess with this later.
+-- If you're playing a job that casts spells, this is where you'd want to have it equip your "casting" set.
 function midcast(spell)
 end
 
@@ -139,6 +139,10 @@ end
 -- Initial Job setup.
 -- Sort out consumables.
 --  Puts away ninja tools and echo drops, grabs remedies.
+-- Relies on the addon "Itemizer" to use these functions.  This is just to sort my bags for me when I swap to this job.
+-- Since I don't need ninja tools for this job, I put all of my ninja tools into my mog case.
+-- Then I grab things I will need for this job, like remedies and echo drops.
+-- The final line stacks up all the items properly within the bags so there aren't loose ones.
 send_command('put toolbag (inoshishinofuda) case all');
 send_command('put toolbag (shihei) case all');
 send_command('put toolbag (shikanofuda) case all');
@@ -152,4 +156,5 @@ send_command('put echo drops case all');
 send_command('stack');
 
 -- Lockstyle our gear when we swap jobs.
+-- This is how you look cool and keep your character from blinking constantly when you swap gear.
 send_command('wait 1;input /lockstyleset 19;')
