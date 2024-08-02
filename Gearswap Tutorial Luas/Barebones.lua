@@ -20,6 +20,11 @@
    }
 
 -- Idle set.
+-- The best thing you can do to get your "sets" is to go in-game, equip all the gear you want in your set, then use //gs export.
+-- Gearswap will create an export file of all of the gear you're wearing, including all of the augments on it and dump it into a text file.
+-- These text files can be found in windower/addons/gearswap/data/export
+-- The file name will show up as your character's name followed by a timestamp of the date and time.  You can delete them after you copy your gearset out of it.
+-- If you don't want gearswap to swap your weapons around for you so you don't lose TP, you can comment them out or leave those slots out all together.
     sets.idle = {
 --[[         ammo        ="Coiste Bodhar", ]]
         head        ="Wakido Kabuto +2",
