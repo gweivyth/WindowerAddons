@@ -11,3 +11,5 @@ Commands:
 //nmt restart - Repeats the last set timer.
 
 //nmt delete [name] - Deletes the named timer.
+
+//nmt toggle - Toggles the addon between taking input in seconds or minutes.  Useful if you don't feel like doing the conversion in your head.  Default is seconds.
